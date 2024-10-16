@@ -1,0 +1,37 @@
+import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+
+public class TeckenRäknareTest {
+    private TeckenRäknare räknare;
+
+    @Before
+    public void setUp() {
+        räknare = new TeckenRäknare();
+    }
+
+    // Test 1: Kontrollera initialvärden
+    @Test
+    public void testInitialaVärden() {
+        assertEquals(0, räknare.totalt_tecken);  // Börja på 0 tecken
+        assertEquals(0, räknare.antal_rader);  // Börja på 0 rader
+    }
+
+    // Test 2: Lägg till en rad och kontrollera om räknaren uppdateras korrekt
+    @Test
+    public void testEnRad() {
+        räknare.uppdatera("Hej");  // 3 tecken i "Hej"
+        assertEquals(3, räknare.totalt_tecken);
+        assertEquals(1, räknare.antal_rader);
+    }
+
+    // Test 3: Lägg till flera rader och kontrollera uppdatering
+    @Test
+    public void testFleraRader() {
+        räknare.uppdatera("Hej");
+        räknare.uppdatera("Världen");
+        räknare.uppdatera("Testar JUnit");
+        assertEquals(19, räknare.totalt_tecken); // Totalt antal tecken i tre rader
+        assertEquals(3, räknare.antal_rader);    // Tre rader totalt
+    }
+}
